@@ -1,0 +1,82 @@
+package com.qfedu.demo.ssh.service.impl;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import com.qfedu.demo.ssh.dto.RoleDto;
+import com.qfedu.demo.ssh.mapper.RoleMapper;
+import com.qfedu.demo.ssh.po.Menu;
+import com.qfedu.demo.ssh.po.Role;
+import com.qfedu.demo.ssh.po.RoleExample;
+import com.qfedu.demo.ssh.service.RoleService;
+import com.qfedu.demo.ssh.vo.DataTable;
+
+@Service
+@Transactional
+public class RoleServiceImpl implements RoleService {
+	private final static Logger LOG = LogManager.getLogger(RoleServiceImpl.class);
+
+	@Resource
+	private RoleMapper roleDao;
+	
+	@Override
+	public DataTable<RoleDto> findAllBySearch(Integer start, Integer length, String search, String nameDir) {
+//		List<Role> pos = roleDao.findAllBy (start, length, search, nameDir);
+//		Long count = roleDao.countAllBy (search);
+//		DataTable<RoleDto> dt = new DataTable<RoleDto> ();
+//		dt.setData(RoleDto.getDtos(pos));
+//		dt.setRecordsFiltered(count);
+//		dt.setRecordsTotal(count);
+//		return dt;
+		return null;
+	}
+
+	@Override
+	public void create(RoleDto r, Integer[] menuIds) {
+		Role po = new Role ();
+		po.setDescription(r.getDescription());
+		po.setName(r.getName());
+		List<Menu> menus = new ArrayList<Menu>();
+		for (Integer menuId : menuIds) {
+			Menu m = new Menu();
+			m.setId(menuId);
+			menus.add(m);
+		}
+		po.setMenus(menus);
+		// roleDao.create (po);
+	}
+
+	@Override
+	public List<RoleDto> findAll() {
+		List<Role> pos = roleDao.selectByExample(new RoleExample());
+		return RoleDto.getDtos(pos);
+	}
+
+	@Override
+	public RoleDto findById(Integer id) {
+		// Role po = roleDao.findById (id);
+		return new RoleDto (null);
+	}
+
+	@Override
+	public void update(RoleDto r) {
+//		Role po = roleDao.findById(r.getId());
+//		po.setDescription(r.getDescription());
+//		po.setName(r.getName());
+//		List<Menu> menus = new ArrayList<Menu>();
+//		for (String idStr : r.getMenuIds().split(",")) {
+//			Integer id = Integer.parseInt(idStr);
+//			Menu m = new Menu ();
+//			m.setId(id);
+//			menus.add(m);
+//		}
+//		po.setMenus(menus);
+//		roleDao.update(po);
+	}
+}

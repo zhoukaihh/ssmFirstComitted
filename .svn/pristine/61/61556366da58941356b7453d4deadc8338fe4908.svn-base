@@ -1,0 +1,20 @@
+1.spring配置
+	<!-- 1.配置事务管理器 -->
+	transactionManager
+	<!-- 2.配置mybatis -->
+	sqlSessionFactory
+	<!-- 3.扫描Mapper映射接口 -->
+
+2.mybatis-generator
+配置：
+/MyBatis3GeneratorDemo1/src/main/resources/generatorConfig.xml
+生成代码后，拷贝：
+/MyBatis3GeneratorDemo1/src/main/java/com/qfedu/demo/ssh/mapper/*Mapper.java
+/MyBatis3GeneratorDemo1/src/main/java/com/qfedu/demo/ssh/mapper/*Mapper.xml
+/MyBatis3GeneratorDemo1/src/main/java/com/qfedu/demo/ssh/po/*.java
+到SSMDemo项目
+
+3.对象创建时id回写
+sql映射配置：useGeneratedKeys="true" keyProperty="id"
+<insert id="insert" parameterType="com.qfedu.demo.ssh.po.User" useGeneratedKeys="true" keyProperty="id">
+参考：/SSMDemo/src/main/resources/com/qfedu/demo/ssh/mapper/UserMapper.xml
